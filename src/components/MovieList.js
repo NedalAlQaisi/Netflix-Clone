@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import Movie from "./Movie";
+import ModalMovie from "./ModalMovie";
 import { useState } from 'react';
 
 
@@ -14,7 +14,7 @@ export default function MovieList({ movies }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    function handleShowMovie(movieData) {
+    function handleShowModal(movieData) {
         console.log(movieData);
         handleShow();
         setChosenMovie(movieData)
@@ -29,7 +29,7 @@ export default function MovieList({ movies }) {
                     return (
                         <>
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src={movie.poster_path} />
+                                <Card.Img variant="top" src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} />
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
                                     <Card.Text>
@@ -40,11 +40,11 @@ export default function MovieList({ movies }) {
                                         <br></br>
                                         {movie.overview}
                                     </Card.Text>
-                                    <Button variant="primary" onClick={() => { handleShowMovie(movie) }}>Show Movie</Button>
+                                    <Button variant="primary" onClick={() => { handleShowModal(movie) }}>Show Modal</Button>
                                 </Card.Body>
                             </Card>
                             {
-                                chosenMovie && <Movie show={show} handleClose={handleClose} chosenMovie={chosenMovie} />
+                                chosenMovie && <ModalMovie show={show} handleClose={handleClose} chosenMovie={chosenMovie} />
                             }
                         </>
                     )
